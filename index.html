@@ -1,8 +1,172 @@
-<p>Hello 大家好</p>
-<p>我是霸都丶傲天，这是我的个人网站。 </p>
-<p>很高兴你来到这里, 你可以在以下的网站找到我</p>
 
-<ul>
-  <li> <a href="https://www.zhihu.com/people/AJLoveChina">知乎</a> </li>
-  <li> <a href="http://hejie.nigeerhuo.com">我的博客(已经不更细了,现在在知乎写文章)</a> </li>
-</ul>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+    <title>学生进出校报备结果页</title>
+</head>
+<style>
+    input {
+        border: none;
+    }
+    .line{
+        background-color: #8D8D8D;
+        height: 1px;
+    }
+    .button{
+        background-color: #1d90fb;
+        color: #fff;
+        border-radius: 10px;
+        bottom: 20px;
+        width: 65%;
+        left: 0; 
+        right: 0;
+        margin: auto;
+        text-align: center;
+        height: 260px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /*font-weight: bold;*/
+        font-size: 44px;
+        margin-top: 130px
+        
+    }
+    .label{
+        color: #3E3E3E;
+        font-weight: bold;
+        font-size: 14px;
+        width: auto;
+        margin-left: 0px;
+        display: inline-block;
+    }
+    input{
+       	color: #9C9C9C;
+	    text-align:right;
+	    float:right;  
+    }
+    .seline{
+        background-color: #F1F1F1;
+        height: 1px;
+    }
+    .item{
+        line-height: 25px;
+        margin-bottom: 6px;
+        padding: 0 15px;
+        PADDING-TOP:12px;
+    }
+    .yanzhengma{
+        line-height: 25px;
+        margin-bottom: 6px;
+        padding: 0 15px;
+        PADDING-TOP:30px;
+        font-size: 36px; 
+        font-weight: bold;
+        text-align:center;
+        color:#CE6392;
+    }
+    .info{
+    color: grey;
+    font-size: .5rem;
+    text-align: center;
+    PADDING-TOP:6px;
+    }
+    
+    .lasttime{
+        line-height: 60px;
+        font-size: 28px;       
+        padding: 10 15px;
+        font-weight: bold;
+        text-align:center;
+    }
+    .time{
+        line-height: 40px;
+        
+        padding: 0 15px;
+    }
+    .time + .time{
+        /* margin-top: 20px; */
+    }
+</style>
+
+<body>
+    <div class="item">
+        <span class="label">姓名:</span> <input type="text" value="张明" style ="font-size:14px;">
+    </div>
+    <div class="seline">  
+    <div class="item">
+        <span class="label">学号:</span> <input type="text" value="20190301060457" style ="font-size:14px;">
+    </div>
+  <div class="seline"> 
+    <div class="item">
+        <span class="label">学院:</span> <input type="text" value="行政法学院" style ="font-size:14px;">
+    </div>
+  <div class="seline"> 
+    <div class="item">
+        <span class="label">年级:</span> <input type="text" value="硕士2020级" style ="font-size:14px;">
+    </div>
+  <div class="seline"> 
+  <div class="item">
+        <span class="label">班级:</span> <input type="text" value="行政硕20级行政1班" style ="font-size:14px;"> 
+    </div>
+ <div class="seline">
+    </div>
+    <div class="yanzhengma">
+         校验码:
+         <span id = "scode"></span>
+    </div>
+     <div class="info">
+    注意：校验码动态变化，出入用户校验码一致！
+    </div>
+    <div class="time">
+    <br><br>
+   </div>
+
+
+    </div>
+    <div class="button">
+        <div>出校<br>已报备</div>
+        
+    </div>
+ <div class="lasttime">
+    <div id = "timeP"></div>
+</body>
+
+<script>
+
+function getTime(){
+	str = ""
+	var p = document.getElementById("timeP");
+	time =  new Date();
+	year = time.getFullYear();
+	month = time.getMonth() + 1;
+	day = time.getDate();
+	hour = time.getHours();
+	minutes = time.getMinutes();
+	seconds = time.getSeconds();
+	str = str + year +"-"+ month +"-"+ day + " " +hour+":"+minutes+":"+seconds;
+	p.innerText = str;
+	/*setTimeout(getTime,1000);*/
+}
+ 
+function code(){
+    var e = document.getElementById("scode");
+    var a=(new Date).getHours()+"li456852";
+    var b = md5(a);
+    e.innerText = b.substring(b.length-6)
+    
+    
+    /*return e.substring(e.length-6)*/}
+
+window.onload = function(){
+	getTime();
+	code();
+}
+
+</script>
+
+</html>
